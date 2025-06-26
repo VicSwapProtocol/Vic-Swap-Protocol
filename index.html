@@ -72,44 +72,11 @@ if (chainId !== '0xa4b1') {
           console.error('User rejected the connection');
         }
       } else {
-        alert('MetaMask is not installed. Please install it to connect your wallet.');
+        alert('MetaMask installed. Please install it.');
       }
     });
   </script>
     </div>
 </main>
-<!-- Web3Modal UMD -->
-<script src="https://unpkg.com/web3modal@1.9.12/dist/index.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/ethers/dist/ethers.min.js"></script>
-<script src="https://unpkg.com/@walletconnect/web3-provider@1.8.0/dist/umd/index.min.js"></script>
-
-<script>
-  const providerOptions = {
-    walletconnect: {
-      package: window.WalletConnectProvider.default,
-      options: {
-        infuraId: "1c4c5d4f74c24bdda1fd16dfb21c984d", // можно заменить на свой ID
-      },
-    },
-  };
-
-  const web3Modal = new window.Web3Modal.default({
-    cacheProvider: false,
-    providerOptions,
-  });
-
-  const connectWallet = async () => {
-    try {
-      const providerInstance = await web3Modal.connect();
-      const ethersProvider = new ethers.providers.Web3Provider(providerInstance);
-      const signer = ethersProvider.getSigner();
-      const address = await signer.getAddress();
-      console.log("✅ Connected address:", address);
-      alert("Wallet connected: " + address);
-    } catch (err) {
-      console.error("❌ Connection error:", err);
-    }
-  };
-</script>
 </body>
 </html>
